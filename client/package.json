@@ -1,0 +1,56 @@
+{
+  "name": "project-vienna",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.4.0",
+    "@testing-library/user-event": "^7.2.1",
+    "axios": "^0.19.2",
+    "classnames": "^2.2.6",
+    "history": "^4.10.1",
+    "node-sass": "^4.13.1",
+    "prop-types": "^15.7.2",
+    "react": "^16.12.0",
+    "react-bootstrap": "^1.0.0-beta.16",
+    "react-dom": "^16.12.0",
+    "react-form-input-validation": "^2.0.3",
+    "react-highlight-hashtags": "^1.0.2",
+    "react-icons": "^3.9.0",
+    "react-preloaders": "^3.0.3",
+    "react-redux": "^7.1.3",
+    "react-responsive-sidebar": "^0.1.16",
+    "react-router": "^5.1.2",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.3.0",
+    "react-toastify": "^5.5.0",
+    "reactstrap": "^8.4.1",
+    "redux": "^4.0.5",
+    "redux-create-actions": "^1.0.0",
+    "redux-create-reducer": "^2.0.0",
+    "redux-persist": "^6.0.0",
+    "redux-thunk": "^2.3.0",
+    "styled-components": "^5.0.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}

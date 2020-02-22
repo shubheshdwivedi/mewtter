@@ -1,0 +1,22 @@
+version: "3"
+services:
+  client:
+    build: client
+    ports:
+      - "3000:3000"
+  server:
+    build: server
+    ports:
+      - "8000:8000"
+    links:
+      - database
+      - caching
+  database:
+    image: mongo
+    ports:
+      - "27017:27017"
+  caching:
+    image: redis
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - "6379:6379"

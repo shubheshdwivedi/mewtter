@@ -1,0 +1,150 @@
+$color:#2196F3;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: #455A64;
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #f1f1f1;
+}
+
+code {
+  font-family: "Work Sans", source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  monospace;
+}
+
+.white {
+  background: white;
+}
+
+// ---------- BOOTSTRAP MODIFICATIONS--------------//
+
+.nav-pills .nav-link {
+  color: $color;
+}
+
+.nav-item {
+  margin-right: 0.5rem;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color: $color;
+  font-weight: 500;
+}
+
+.navbar-light .navbar-nav .active>.nav-link, .navbar-light
+.navbar-nav .nav-link.active, .navbar-light .navbar-nav
+.nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
+  color:$color;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+  background-color: aliceblue;
+  color: $color;
+}
+
+.form-control {
+  background-color: #f1f1f1;
+  border: none;
+  font-weight: 600;
+  transition: all 0.2s ease-in;
+}
+
+.form-control:focus {
+  background-color: #d6d6d6;
+  box-shadow: none;
+}
+
+.card {
+  border: none;
+}
+
+.tag {
+  color: $color;
+}
+
+// ---------- BOOTSTRAP MODIFICATIONS--------------//
+
+// CUSTOM BUTTON
+
+.button {
+  display: inline-block;
+  padding: .5rem 1.25rem;
+  border-radius: 0.3rem;
+  color: #fff;
+  border: none;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 1rem;
+  letter-spacing: .15rem;
+  transition: all .3s;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  &:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $color;
+    border-radius: 0.3rem;
+    z-index: -2;
+  }
+  &:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-color: darken($color, 5%);
+    transition: all .3s;
+    border-radius: 0.3rem;
+    z-index: -1;
+  }
+  &:hover {
+    color: #fff;
+    &:before {
+      width: 100%;
+    }
+  }
+}
+
+.secondary-action {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: $color;
+  background-color: aliceblue;
+  display: inline;
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+}
+
+.counter-tabs {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: #2196F3;
+  padding: 0.5rem 1rem;
+}
+
+.img {
+  font-size: 2rem;
+  background-color: #2196F3;
+  width: 3.2rem;
+  padding: 0.2rem 0.5rem;
+  /* margin: 0 -15px; */
+  border-radius: 1000%;
+  color: white;
+}

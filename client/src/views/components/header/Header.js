@@ -1,0 +1,32 @@
+import {title} from "../../../helpers/helpers";
+import {Nav, Navbar} from "react-bootstrap";
+import React from "react";
+import "./Header.scss"
+import {connect} from "react-redux";
+import logoutAction from "../../../redux/store/actions/auth/LogoutAction";
+
+const Header = (props) =>
+    <Navbar expand="lg" className={'header'} sticky={'top'}>
+        <Navbar.Brand href="/" className={'mr-5'}>{title}</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+        <Navbar.Collapse id="basic-navbar-nav">
+            <Nav variant="pills" defaultActiveKey={props.defKey}>
+                <Nav.Item>
+                    <Nav.Link href="/">Home</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link href="/search">Search</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link onClick={props.logout}>Logout</Nav.Link>
+                </Nav.Item>
+            </Nav>
+        </Navbar.Collapse>
+    </Navbar>;
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        logout: () => dispatch(logoutAction())
+    }
+};
+export default connect(null,mapDispatchToProps)(Header);
