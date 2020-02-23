@@ -2,6 +2,7 @@ import {Router} from 'express';
 import logger from "../../log/logger";
 import ResponseUtils from "../../utils/ResponseUtils";
 import UserService from "../../services/user/UserService";
+import checkToken from "../../services/auth/AuthServiceCheck";
 
 const route  = Router();
 
@@ -19,7 +20,7 @@ export default (router) => {
             }
         });
 
-    route.post('/follow',
+    route.post('/follow', checkToken,
         async (req, res, next) => {
             const {toFollow, user, op} = req.body;
             try {

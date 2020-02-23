@@ -2,13 +2,14 @@ import {Router} from 'express';
 import logger from "../../log/logger";
 import ResponseUtils from "../../utils/ResponseUtils";
 import SearchService from "../../services/search/SearchService";
+import checkToken from "../../services/auth/AuthServiceCheck";
 
 const route  = Router();
 
 export default (router) => {
     router.use('/search', route);
 
-    route.post('/',
+    route.post('/', checkToken,
         async (req, res, next) => {
             const {query} = req.body;
             try {
