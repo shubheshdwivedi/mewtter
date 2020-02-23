@@ -10,7 +10,7 @@ import RedisStore from 'rate-limit-redis';
 import Redis from 'redis';
 
 export default async (app) => {
-    const client = Redis.createClient(6379, 'caching');
+    const client = Redis.createClient(6379,'caching');
     client.on('connect', () => console.log('Connected to Redis'));
     client.on("error", (error) => console.error(error));
     const apiLimiter = new RateLimit({

@@ -9,7 +9,7 @@ const route  = Router();
 export default (router) => {
     router.use('/user', route);
 
-    route.get('/follow/:id',
+    route.get('/follow/:id', checkToken,
         async (req, res, next) => {
             const id = req.params.id;
             try {
