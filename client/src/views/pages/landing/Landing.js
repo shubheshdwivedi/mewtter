@@ -19,7 +19,6 @@ class Landing extends Component {
 
     render() {
         const {user, isAuthorizing, error} = this.props;
-        console.log(isAuthorizing)
         if (error)
             toast.error(error, {
                 position: toast.POSITION.TOP_RIGHT

@@ -5,7 +5,7 @@ export const APP_NAME = 'mewtter';
 export const isLoggedIn = () => localStorage.getItem('token')!==null;
 
 export const titleCase = (string) => {
-    return string = string.toLowerCase()
+    return string.toLowerCase()
         .split(' ')
         .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
         .join(' ');
@@ -25,9 +25,10 @@ export const getRelativeTime = (timeStamp) => {
             return parseInt(secondsPast / 3600) + 'h';
         }
         if (secondsPast > 86400) {
-            let day = timeStamp.getDate();
-            let month = timeStamp.toDateString().match(/ [a-zA-Z]*/)[0].replace(" ", "");
-            let year = timeStamp.getFullYear() === now.getFullYear() ? "" : " " + timeStamp.getFullYear();
+            const timestampDate = new Date();
+            let day = timestampDate.getDate();
+            let month = timestampDate.toDateString().match(/ [a-zA-Z]*/)[0].replace(" ", "");
+            let year = timestampDate.getFullYear() === now.getFullYear() ? "" : " " + timeStamp.getFullYear();
             return day + " " + month + year;
         }
 };
