@@ -14,9 +14,11 @@ const createApiAction = (data, actions, apiRequest, type='', helpers=null, path=
                 if(res.data.success) {
                     if(path)
                         history.push(path);
-                    dispatch(actions.success(res.data));
                     if(res.data.data.token)
-                        api.setHeader();
+                        api.setHeader(res.data.data.token).then(
+                            dispatch(actions.success(res.data))
+                        );
+                    dispatch(actions.success(res.data));
                 } else
                     dispatch(actions.failure(res.data.error))
             })

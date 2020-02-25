@@ -26,8 +26,8 @@ class Api {
         return this.api.put(endpoint, data);
     }
 
-    setHeader() {
-        const token = localStorage.getItem('token');
+    async setHeader(t) {
+        const token = (localStorage.getItem('token')) ? localStorage.getItem('token') : t ;
         if (token !== null)
             this.api.defaults.headers.common['x-auth-token'] = token;
     }

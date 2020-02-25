@@ -11,13 +11,13 @@ const Header = (props) =>
         <Navbar.Toggle aria-controls="basic-navbar-nav"/>
         <Navbar.Collapse id="basic-navbar-nav">
             <Nav variant="pills" defaultActiveKey={props.defKey}>
-                <Nav.Item>
+                <Nav.Item className={'px-2 py-2'}>
                     <Nav.Link href="/">Home</Nav.Link>
                 </Nav.Item>
-                <Nav.Item>
+                <Nav.Item  className={'px-2 py-2'}>
                     <Nav.Link href="/search">Search</Nav.Link>
                 </Nav.Item>
-                <Nav.Item>
+                <Nav.Item  className={'px-2 py-2'}>
                     <Nav.Link onClick={props.logout}>Logout</Nav.Link>
                 </Nav.Item>
             </Nav>

@@ -7,6 +7,7 @@ import TweetFeed from "../../components/tweet_feed";
 import UserList from "../../components/user_list";
 import addFollowAction from "../../../redux/store/actions/user/AddFollowAction";
 import Searchbar from "../../components/searchbar/Searchbar";
+import Loader from "react-loader-spinner";
 
 
 class Search extends Component {
@@ -14,14 +15,14 @@ class Search extends Component {
     addFollow = (data) => this.props.doFollow(data);
 
     render() {
-        const {user, follow} = this.props;
+        const {user, follow, isSearching} = this.props;
         const {users, tweets} = this.props.search;
         let tweetCount = 0, usersCount = 0;
-        if (tweets && users){
+        if (tweets && users) {
             tweetCount = tweets.length;
             usersCount = users.length;
         }
-        const userResult = (Array.isArray(users) &&  users.length > 0) ?
+        const userResult = (Array.isArray(users) && users.length > 0) ?
             <UserList
                 follow={this.addFollow}
                 users={users}
@@ -40,39 +41,58 @@ class Search extends Component {
                     </Col>
                     <Col md={8}>
                         <Searchbar/>
-                        <div className={'card px-4 py-3'} style={{background:'#f1f1f1'}}>
-                        <Tab.Container id="left-tabs-example" defaultActiveKey="tweets">
-                            <Row>
-                                <Nav variant={'pills'}>
-                                    <Nav.Item className={'mr-2'}>
-                                        <Nav.Link eventKey="tweets" style={{
-                                            outline: 'none',
-                                            fontWeight: 500
-                                        }}>Tweets <strong>{tweetCount}</strong></Nav.Link>
-                                    </Nav.Item>
-                                    <Nav.Item>
-                                        <Nav.Link eventKey="users" style={{
-                                            outline: 'none',
-                                            fontWeight: 500
-                                        }}>Users <strong>{usersCount}</strong></Nav.Link>
-                                    </Nav.Item>
-                                </Nav>
-                            </Row>
-                            <hr/>
-                            <Row className={'px-2 py-2'}>
-                                <Tab.Content className={'w-100'}>
-                                    <Tab.Pane eventKey="tweets">
-                                        <Row className={'px-4'}>
-                                            {tweetResult}
+                        {
+                            isSearching ?
+                                <Row className={'mb-3 px-3'}>
+                                    <Col md={1} xs={3}>
+                                        <Loader
+                                            type="Puff"
+                                            color="#00BFFF"
+                                            height={50}
+                                            width={50}
+                                        />
+                                    </Col>
+                                    <Col md={8} xs={8} style={{lineHeight: 3}}>
+                                        Searching meweets and mewsers...
+                                    </Col>
+                                </Row>
+                                :
+                                <div className={'card px-4 py-3'} style={{background: '#f1f1f1'}}>
+                                    <Tab.Container id="left-tabs-example" defaultActiveKey="tweets">
+                                        <Row>
+                                            <Nav variant={'pills'}>
+                                                <Nav.Item className={'mr-2'}>
+                                                    <Nav.Link eventKey="tweets" style={{
+                                                        outline: 'none',
+                                                        fontWeight: 500
+                                                    }}>Meweets <strong>{tweetCount}</strong></Nav.Link>
+                                                </Nav.Item>
+                                                <Nav.Item>
+                                                    <Nav.Link eventKey="users" style={{
+                                                        outline: 'none',
+                                                        fontWeight: 500
+                                                    }}>Mewsers <strong>{usersCount}</strong></Nav.Link>
+                                                </Nav.Item>
+                                            </Nav>
                                         </Row>
-                                    </Tab.Pane>
-                                    <Tab.Pane eventKey="users">
-                                        {userResult}
-                                    </Tab.Pane>
-                                </Tab.Content>
-                            </Row>
-                        </Tab.Container>
-                        </div>
+                                        <hr/>
+                                        <Row className={'px-2 py-2'}>
+                                            <Tab.Content className={'w-100'}>
+                                                <Tab.Pane eventKey="tweets">
+                                                    <Row className={'px-4'}>
+                                                        {tweetResult}
+                                                    </Row>
+                                                </Tab.Pane>
+                                                <Tab.Pane eventKey="users">
+                                                    {userResult}
+                                                </Tab.Pane>
+                                            </Tab.Content>
+                                        </Row>
+                                    </Tab.Container>
+                                </div>
+
+                        }
+
                     </Col>
                 </Row>
             </Container>
@@ -84,6 +104,7 @@ const mapStateToProps = (state) => {
     return {
         user: state.DataReducer.AuthReducer.user,
         search: state.DataReducer.SearchReducer.search,
+        isSearching: state.DataReducer.SearchReducer.isSearching,
         follow: state.DataReducer.FollowReducer,
         error: state.DataReducer.SearchReducer.error
     }

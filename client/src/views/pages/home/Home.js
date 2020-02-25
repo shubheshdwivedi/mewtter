@@ -9,11 +9,12 @@ import fetchTweetAction from "../../../redux/store/actions/tweets/FetchTweetActi
 import TweetFeed from "../../components/tweet_feed";
 import fetchFollowAction from "../../../redux/store/actions/user/FetchFollowAction";
 import {toast} from "react-toastify";
+import Loader from "react-loader-spinner";
 
 class Home extends Component {
 
     tweet = (tweetText) => {
-        if(tweetText === '')
+        if (tweetText === '')
             toast.error("Empty tweet!", {
                 position: toast.POSITION.TOP_RIGHT
             });
@@ -34,7 +35,7 @@ class Home extends Component {
     }
 
     render() {
-        const {user, tweets, follow} = this.props;
+        const {user, tweets, follow, isTweeting, isFetching} = this.props;
         const error = this.props.error;
         if (error)
             toast.error(error, {
@@ -48,8 +49,46 @@ class Home extends Component {
                         <ProfileCard user={user} follow={follow}/>
                     </Col>
                     <Col md={8} className={'px-3'}>
-                        <TweetBox sendTweet={this.tweet}/>
-                        <TweetFeed tweets={tweets}/>
+                        {
+                            isTweeting ?
+                                <Row className={'mb-3'}>
+                                    <Col md={1} xs={3}>
+                                        <Loader
+                                            type="Puff"
+                                            color="#00BFFF"
+                                            height={50}
+                                            width={50}
+                                        />
+                                    </Col>
+                                    <Col md={8} xs={9} style={{lineHeight: 3}}>
+                                        Pawblishing your meweet...
+                                    </Col>
+                                </Row>
+
+                                :
+                                <TweetBox sendTweet={this.tweet}/>
+                        }
+                        {
+                            isFetching ?
+                                <Row className={'mt-2'}>
+                                    <Col md={1} xs={2}>
+                                        <Loader
+                                            type="Puff"
+                                            color="#00BFFF"
+                                            height={50}
+                                            width={50}
+                                        />
+                                    </Col>
+                                    <Col md={8} xs={8} style={{lineHeight: 3}}>
+                                        Getting your meweets...
+                                    </Col>
+                                </Row>
+
+                                :
+                                <TweetFeed tweets={tweets}/>
+                        }
+
+
                     </Col>
                 </Row>
             </Container>
@@ -60,6 +99,8 @@ class Home extends Component {
 const mapStateToProps = (state) => {
     return {
         user: state.DataReducer.AuthReducer.user,
+        isTweeting: state.DataReducer.TweetReducer.isTweeting,
+        isFetching: state.DataReducer.TweetReducer.isFetching,
         error: state.DataReducer.TweetReducer.error,
         tweets: state.DataReducer.TweetReducer.tweets,
         follow: state.DataReducer.FollowReducer

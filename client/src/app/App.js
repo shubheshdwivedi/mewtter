@@ -10,7 +10,6 @@ import 'react-toastify/dist/ReactToastify.css';
 function App() {
     const AppStyle = {
         height: '100vh',
-
     };
   return (
     <div className="App" style={AppStyle}>

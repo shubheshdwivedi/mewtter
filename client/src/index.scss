@@ -39,8 +39,8 @@ code {
   font-weight: 500;
 }
 
-.navbar-light .navbar-nav .active>.nav-link, .navbar-light,
-.navbar-nav .nav-link.active, .navbar-light .navbar-nav,
+.navbar-light .navbar-nav .active>.nav-link, .navbar-light
+.navbar-nav .nav-link.active, .navbar-light .navbar-nav
 .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
   color:$color;
 }
@@ -104,7 +104,7 @@ code {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 0;
+    width: 0%;
     height: 100%;
     background-color: darken($color, 5%);
     transition: all .3s;
